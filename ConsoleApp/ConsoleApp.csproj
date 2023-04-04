@@ -51,15 +51,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1.enumrations.txt" />
-    <Content Include="2.structures exemple1.txt" />
-    <Content Include="3.structvstuple.txt" />
-    <Content Include="0.Types scalaires.txt" />
-    <Content Include="4.tuplerefvstupleval.txt" />
-    <Content Include="5.delegate exemple1.txt" />
-    <Content Include="delegate exemple2.txt" />
-    <Content Include="6.pointeur.txt" />
-    <Content Include="7.surcharge operaterurs exemple1.txt" />
+    <Content Include="0.Syntaxes\1.enumrations.txt" />
+    <Content Include="0.Syntaxes\2.structures exemple1.txt" />
+    <Content Include="0.Syntaxes\3.structvstuple.txt" />
+    <Content Include="0.Syntaxes\0.Types scalaires.txt" />
+    <Content Include="0.Syntaxes\4.tuplerefvstupleval.txt" />
+    <Content Include="0.Syntaxes\5.delegate exemple1.txt" />
+    <Content Include="0.Syntaxes\5bis.delegate exemple2.txt" />
+    <Content Include="0.Syntaxes\6.pointeur.txt" />
+    <Content Include="0.Syntaxes\7.surcharge operaterurs exemple1.txt" />
+    <Content Include="0.Syntaxes\8.surcharge des operateurs exemple 2.txt" />
+    <Content Include="0.Syntaxes\9.conversion basiques.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

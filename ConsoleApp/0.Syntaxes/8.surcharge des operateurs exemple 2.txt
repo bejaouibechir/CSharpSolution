@@ -1,0 +1,32 @@
+﻿using System;
+using System.Threading;
+
+namespace ConsoleApp
+{
+    internal class Program
+    { 
+       static void Main(string[] args)
+       {
+            Distance distance1 = new Distance();
+               distance1.Valeur = 2.2f;
+            Distance distance2 = new Distance();
+              distance2.Valeur = 4.2f;
+            float surface = distance1 * distance2;
+
+        }    
+    }
+    
+    public struct Distance
+    {
+        public float Valeur; 
+
+        static public float operator *(Distance d1,Distance d2)
+        {
+            return d1.Valeur * d2.Valeur;
+        }
+    }
+    
+
+}
+
+

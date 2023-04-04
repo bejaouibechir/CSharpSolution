@@ -1,13 +1,4 @@
-﻿using System;
-using System.Threading;
-
-namespace ConsoleApp
-{
-    internal class Program
-    { 
-       static void Main(string[] args)
-       {
-            int x = 2; //entière 
+﻿int x = 2; //entière 
             long y = x; // conversion implicite
 
             long x1 = 2; //entière 
@@ -36,10 +27,3 @@ namespace ConsoleApp
 
             object ledoubleobj = 5.5255;
             double ledouble = System.Convert.ToDouble(ledoubleobj);
-
-       }    
-    }
-
-}
-
-
