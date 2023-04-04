@@ -1,0 +1,37 @@
+﻿using System;
+using System.Configuration;
+
+namespace ConsoleApp
+{
+    class program
+    {
+       static void Main(string[] args)
+       {
+            Routine mysql = new Routine();
+            int port = mysql.Port;
+            
+       }
+    }
+    public class Routine
+    {
+        private int _port;
+
+        public Routine()
+        {
+            _port = int.Parse(ConfigurationManager.AppSettings["mysqlport"]);
+        }
+       
+        public int Port
+        {
+           get { return _port;}
+           private set
+           {
+                _port = value;
+           }
+        }
+
+    }
+
+}
+
+

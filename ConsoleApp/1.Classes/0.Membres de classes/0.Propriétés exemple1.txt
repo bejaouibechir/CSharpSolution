@@ -1,0 +1,42 @@
+﻿using System;
+
+namespace ConsoleApp
+{
+    class program
+    {
+       static void Main(string[] args)
+       {
+            Produit p1 = new Produit();
+            p1.Prix = 250; //TTC
+            Console.WriteLine($"La valeur de prix est {p1.Prix}");        
+            
+       }
+    }
+
+    public class Produit
+    {
+        public decimal _prix; 
+
+        public decimal Prix
+        {
+            set {
+                ;
+                _prix = value;
+                ;
+            }
+            get {
+                ;
+                return _prix * 0.95m; }
+        }
+    }
+    
+    
+    class Point 
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+}
+
+

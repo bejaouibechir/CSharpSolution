@@ -1,0 +1,60 @@
+﻿using System;
+using System.Configuration;
+
+namespace ConsoleApp
+{
+    class program
+    {
+       static void Main(string[] args)
+       {
+            Classe classe = new Classe(3);
+
+
+            classe[0] = new Eleve();
+            classe[0].Id = 1;
+            classe[0].Nom = "Pièrre";
+
+            classe[1] = new Eleve();
+            classe[1].Id = 2;
+            classe[1].Nom = "Jack";
+
+           
+            classe[2] = new Eleve();
+            classe[2].Id = 3;
+            classe[2].Nom = "Jhon";
+
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine(classe[i].Nom);
+            }
+
+        }
+    }
+    public class Classe
+    {
+        public Classe(int nombreEleves)
+        {
+            _eleves = new Eleve[nombreEleves];
+        }
+        //Propriété indexeur
+        public Eleve this[int index]
+        {
+            get { return _eleves[index]; }
+            set { _eleves[index] = value; }
+        }
+
+        
+        private Eleve [] _eleves { get; set; }
+    }
+
+    public class Eleve
+    {
+        public int Id { get; set; }
+        public string Nom { get; set; }
+    }
+
+}
+
+

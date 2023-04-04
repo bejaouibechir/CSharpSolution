@@ -1,0 +1,53 @@
+﻿using System;
+using System.Configuration;
+
+namespace ConsoleApp
+{
+    class program
+    {
+       static void Main(string[] args)
+       {
+            Classe classe = new Classe(3);
+
+
+            classe.Eleves[0] = new Eleve();
+            classe.Eleves[0].Id = 1;
+            classe.Eleves[0].Nom = "Pièrre";
+
+            classe.Eleves[1] = new Eleve();
+            classe.Eleves[1].Id = 2;
+            classe.Eleves[1].Nom = "Jack";
+
+           
+            classe.Eleves[2] = new Eleve();
+            classe.Eleves[2].Id = 3;
+            classe.Eleves[2].Nom = "Jhon";
+
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine(classe.Eleves[i].Nom);
+            }
+
+        }
+    }
+    public class Classe
+    {
+        public Classe(int nombreEleves)
+        {
+            Eleves = new Eleve[nombreEleves];
+        }
+        
+        public Eleve [] Eleves { get; set; }
+    }
+
+    public class Eleve
+    {
+        public int Id { get; set; }
+        public string Nom { get; set; }
+    }
+
+}
+
+

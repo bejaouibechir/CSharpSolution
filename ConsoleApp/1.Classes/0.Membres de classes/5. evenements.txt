@@ -1,0 +1,51 @@
+﻿using System;
+using System.Configuration;
+
+namespace ConsoleApp
+{
+    class program
+    {
+        static void Main(string[] args)
+        {
+            Maclasse maclasse = new Maclasse();
+            maclasse.Beep += new MyEventHandler(Maclasse_Beep);
+
+        }
+
+        private static void Maclasse_Beep(object sender, EventArgs args)
+        {
+            Console.Beep(100, 2000);
+        }
+    }
+
+    /* Champs 
+       Propriétés
+       Index
+       Methodes
+       Evenements
+     */
+
+    public delegate void MyEventHandler(object sender, EventArgs args);
+    public class Maclasse 
+    {
+       private event MyEventHandler _beepEvent; 
+
+       public event MyEventHandler Beep
+        {
+            add { 
+                _beepEvent += value;
+                OnEventFire();
+            }
+            remove { _beepEvent = value; }
+        }
+
+        private void OnEventFire()
+        {
+            if (_beepEvent != null)
+                _beepEvent(this, new EventArgs());
+        }
+    }
+
+}
+
+

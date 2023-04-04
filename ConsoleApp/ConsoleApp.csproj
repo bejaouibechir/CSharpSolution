@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,6 +65,13 @@
     <Content Include="0.Syntaxes\7.surcharge operaterurs exemple1.txt" />
     <Content Include="0.Syntaxes\8.surcharge des operateurs exemple 2.txt" />
     <Content Include="0.Syntaxes\9.conversion basiques.txt" />
+    <Content Include="1.Classes\0.Membres de classes\0.Propriétés exemple1.txt" />
+    <Content Include="1.Classes\0.Membres de classes\1.Propriété exemple 2.txt" />
+    <Content Include="1.Classes\0.Membres de classes\2.Propriétés exemple 3.txt" />
+    <Content Include="1.Classes\0.Membres de classes\3.sans indexeur.txt" />
+    <Content Include="1.Classes\0.Membres de classes\5. evenements.txt" />
+    <Content Include="1.Classes\0.Membres de classes\4.avec indexeur.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

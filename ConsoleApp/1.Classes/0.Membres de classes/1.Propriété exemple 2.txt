@@ -1,0 +1,36 @@
+﻿using System;
+
+namespace ConsoleApp
+{
+    class program
+    {
+       static void Main(string[] args)
+       {
+            Routine mysql = new Routine();
+            int port = mysql.Port;
+            
+       }
+    }
+    public class Routine
+    {
+        private int _port;
+
+        public Routine()
+        {
+            _port = 5040;
+        }
+       
+        public int Port
+        {
+           get { return _port;}
+           private set
+           {
+                _port = value;
+           }
+        }
+
+    }
+
+}
+
+
