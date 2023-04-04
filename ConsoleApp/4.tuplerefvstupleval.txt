@@ -1,0 +1,14 @@
+﻿            //Tuple de type valeur utilisé pour représenter une adresse
+            (short, string, string, string) 
+                adresse1 = (12,"Ruexyz","Paris","France");
+           
+            Console.WriteLine($"Numéro: {adresse1.Item1} ,rue: {adresse1.Item2}, " +
+                $"cité: {adresse1.Item3}, pays: {adresse1.Item4}");
+
+            //Tuple de type reférence utilisé pour représenter une adresse
+            Tuple<short,string,string,string> 
+                adresse2
+                = new Tuple<short, string, string, string>(12, "Ruexyz", "Paris", "France");
+
+            Console.WriteLine($"Numéro: {adresse2.Item1} ,rue: {adresse2.Item2}, " +
+               $"cité: {adresse2.Item3}, pays: {adresse2.Item4}");

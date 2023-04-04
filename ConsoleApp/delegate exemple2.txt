@@ -1,0 +1,33 @@
+﻿using System;
+using System.Threading;
+
+namespace ConsoleApp
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Debut de traiement dans le thread principal");
+            Console.WriteLine("Lancement du Thead secondaire");
+            Thread thread = new Thread(routine1); //routine1 est pointée à l'aide d'une delegate
+            thread.Start();
+            Console.WriteLine("Fin de traiement dans le thread principal");
+        }
+
+      
+        
+        private static void routine1()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void routine2()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+   
+}
+
+

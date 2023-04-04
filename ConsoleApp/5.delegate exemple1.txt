@@ -1,0 +1,62 @@
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
+
+namespace ConsoleApp
+{
+    internal class Program
+    {
+        delegate void Callback(string message); //Représenter toute sorte de méthodes void qui admet une chaine comme paramètre
+        static void Main(string[] args)
+        {
+            Ajouter();
+        }
+
+        //Côté client
+        static void Ajouter()
+        {
+            Produit produit = new Produit();
+            produit.Id = 1;
+            produit.Label = "Mercedes";
+            produit.Prix = 25000;
+            AjouterProduit(produit,AfficherObservateurEvenements,$"Le produit à été ajouté {DateTime.Now.Hour}:{DateTime.Now.Minute}");
+        }
+
+        
+
+        //Côté serveur distant
+        static void AjouterProduit(Produit p,Callback notify,string message)
+        { 
+            string contenu = $"Produit {p.Id}:{p.Label}:{p.Prix} saugardé à {DateTime.Now}";
+            Thread.Sleep(3000); //Pour simuler une certaine latence
+            notify.Invoke(message);
+            File.WriteAllText("C:\\temp\\produit.txt", contenu);
+        }
+
+        static void AfficherConsole(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        static void AfficherFenetreSortie(string m)
+        {
+            Debug.WriteLine(m);
+        }
+
+        static void AfficherObservateurEvenements(string m)
+        {
+            EventLog.WriteEntry("Application", m, EventLogEntryType.Information);
+        }
+    }
+
+    public struct Produit
+    {
+        public int Id { get; set; }
+        public string Label { get; set; }
+        public decimal Prix { get; set; }
+
+    }
+}
+
+

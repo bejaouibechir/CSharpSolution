@@ -1,0 +1,12 @@
+﻿unsafe static void Main(string[] args)
+       {
+             int a = 2, b = 3;
+             Swap(&a, &b);
+                //Resultat a = 3 et b = 2
+        }
+        unsafe static void Swap(int *a, int *b)
+        {
+            *a = *a + *b;
+            *b = *a - *b;
+            *a = *a - *b;
+        }
