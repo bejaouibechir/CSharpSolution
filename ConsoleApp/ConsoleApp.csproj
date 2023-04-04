@@ -59,6 +59,7 @@
     <Content Include="5.delegate exemple1.txt" />
     <Content Include="delegate exemple2.txt" />
     <Content Include="6.pointeur.txt" />
+    <Content Include="7.surcharge operaterurs exemple1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

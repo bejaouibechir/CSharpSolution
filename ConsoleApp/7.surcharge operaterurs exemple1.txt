@@ -1,0 +1,71 @@
+﻿using System;
+using System.Threading;
+
+namespace ConsoleApp
+{
+    internal class Program
+    { 
+       static void Main(string[] args)
+       {
+            Livre livre1 = new Livre();
+            livre1.Id = 1;
+            livre1.Titre = "Livre 1";
+            livre1.Pages = 350;
+
+            Livre livre2 = new Livre();
+            livre2.Id = 1;
+            livre2.Titre = "Livre 2";
+            livre2.Pages = 550;
+
+            if(livre1>livre2)
+            {
+                Console.WriteLine("Le livre 1 contient beaucoup plus de pages que livre 2");
+            }
+            else
+            {
+                Console.WriteLine("Le livre 1 contient beaucoup plus de pages que livre 2");
+            }
+
+        }    
+    }
+     
+    public struct Livre
+    {
+        public int Id;
+        public string Titre;
+        public int Pages;
+
+        static public bool operator > (Livre l1,Livre l2)
+        {
+            if(l1.Pages>l2.Pages)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        static public bool operator <(Livre l1, Livre l2)
+        {
+            if (l1.Pages < l2.Pages)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Afficher()
+        {
+            Console.WriteLine($"Id/ {Id} Titre:{Titre} Pages:{Pages}");
+        }
+    }
+
+
+
+}
+
+
