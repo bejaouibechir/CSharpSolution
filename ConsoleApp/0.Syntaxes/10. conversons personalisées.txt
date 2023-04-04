@@ -1,0 +1,42 @@
+﻿namespace ConsoleApp
+{
+    internal class Program
+    { 
+       static void Main(string[] args)
+       {
+            Fahrenheit fahrenheit = new Fahrenheit();
+            fahrenheit.Value = 150;
+            Celsius celsius = fahrenheit;
+
+            Celsius celsius2 = new Celsius();
+            celsius2.Value = 32;
+            Fahrenheit fahrenheit2 = celsius2;
+        }    
+    }
+
+    public struct Fahrenheit
+    {
+        public float Value;
+
+        public static implicit operator Fahrenheit(Celsius c)
+        {
+            Fahrenheit resultat = new Fahrenheit();
+            resultat.Value = (c.Value + 32) * 9 / 5;
+            return resultat;
+        }
+    }
+    //(32°F − 32) × 5/9 
+    public struct Celsius
+    {
+        public float Value;
+        public static implicit operator Celsius(Fahrenheit f)
+        {
+            Celsius resultat = new Celsius();
+            resultat.Value = (f.Value - 32) * 5 / 9;
+            return resultat;
+            
+        }
+    }
+}
+
+

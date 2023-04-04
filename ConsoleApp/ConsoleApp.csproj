@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="0.Syntaxes\1.enumrations.txt" />
+    <Content Include="0.Syntaxes\10. conversons personalisées.txt" />
+    <Content Include="0.Syntaxes\11. conversions personnalisées exemple  2.txt" />
     <Content Include="0.Syntaxes\2.structures exemple1.txt" />
     <Content Include="0.Syntaxes\3.structvstuple.txt" />
     <Content Include="0.Syntaxes\0.Types scalaires.txt" />
