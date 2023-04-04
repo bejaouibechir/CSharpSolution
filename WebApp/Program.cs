@@ -19,6 +19,8 @@ namespace WebApp
                 app.UseHsts();
             }
 
+            //Bonjour à tous (Nathan)
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
