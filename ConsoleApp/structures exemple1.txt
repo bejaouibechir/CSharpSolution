@@ -1,0 +1,44 @@
+﻿using System;
+
+namespace ConsoleApp
+{
+    public struct Point
+    {
+        public double abscisse;
+        public double ordonnée;
+        public void AfficherPoint()
+        {
+            Console.WriteLine($"Point({abscisse},{ordonnée})");
+        }
+    }
+    
+    
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Point point1 = new Point();
+            point1.abscisse = 11;
+            point1.ordonnée = 22;
+            point1.AfficherPoint();
+
+            Point point2 = new Point();
+            point2.abscisse = 11;
+            point2.ordonnée = 22;
+            point2.AfficherPoint();
+
+            Point resulat = Somme(point1, point2);
+            resulat.AfficherPoint();
+        }
+
+        static Point Somme(Point p1,Point p2)
+        {
+            Point resultat = new Point();
+            resultat.abscisse = p1.abscisse + p2.abscisse;
+            resultat.ordonnée = p1.ordonnée + p2.ordonnée;
+            return resultat;
+        }
+
+        
+    }
+}

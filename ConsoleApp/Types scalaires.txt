@@ -1,0 +1,14 @@
+﻿int x = -23;//32 bit 
+            long y = -23; //Le double de int en termes de taille 64 bit
+            short z = -23; //La moitié de int en termes de taille 16 bit 
+
+            uint x1 = -23;//32 bit 
+            ulong y1 = -23; //Le double de int en termes de taille 64 bit
+            ushort z1 = -23; //La moitié de int en termes de taille 16 bit 
+
+            byte a = 23; //Le quart de int en termes de taille 8 bit 255 
+
+            decimal b = 10.5m; //Est plus précis utilisé pour représenter des valeurs monétaires
+            
+            float c = 14.5f; //Représenter des dimensions 32 bit
+            double d = 15.55;// 64 bit de taille 

@@ -1,0 +1,25 @@
+﻿/*
+ Exemple d'enumeration
+  public enum CouleursPrimaires
+    {
+      Rouge,Bleu,Vert
+    }
+
+    public enum Jours
+    {
+        Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche
+    }
+
+ Jours jours = Jours.Jeudi;
+
+            if(jours == Jours.Samedi || jours == Jours.Dimanche)
+            {
+                Console.WriteLine("C'est le weekend");
+            }
+            else
+            {
+                Console.WriteLine("Les journées de travail");
+            }
+ 
+ 
+ */
