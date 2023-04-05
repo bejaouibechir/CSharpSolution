@@ -1,0 +1,72 @@
+﻿using System;
+using System.Data;
+using System.IO;
+using ClassLib;
+
+namespace ConsoleApp
+{
+    class Principal 
+    {
+        static void Main(string[] args)
+        {
+            Avion avion = new Avion();
+            Nuage nuage = new Nuage();
+            Homme homme = new Homme();
+            Sportif sportif = new Sportif();
+
+            IDeplacer[] entitésquibougent = { avion,nuage,homme,sportif };
+
+            foreach (var item in entitésquibougent)
+            {
+                item.Deplacer();
+            }
+           
+        }  
+    }
+
+    
+    public interface IDeplacer
+    {
+        void Deplacer();
+    }
+
+
+    public class Mamifère : IDeplacer
+    {
+        public int Age { get; set; }
+
+        public void Deplacer()
+        {
+            Console.WriteLine("Je suis un mamifère et le me déplace");
+        }
+    }
+
+    public class Avion : IDeplacer
+    {
+        public void Deplacer()
+        {
+            Console.WriteLine("Je suis un avion de vole");
+        }
+    }
+
+    public class Nuage : IDeplacer
+    {
+        public void Deplacer()
+        {
+            Console.WriteLine("Je suis nuage et je me déplace");
+        }
+    }
+
+    public class Homme : Mamifère
+    {
+
+    }
+
+    public class Sportif :Homme
+    {
+
+    }
+  
+}
+
+

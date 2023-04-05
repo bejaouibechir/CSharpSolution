@@ -1,0 +1,52 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    class program
+    {
+        static void Main(string[] args)
+        {
+            Fille fille = new Fille();
+            
+        }  
+    }
+
+    public class GrandMère
+    {
+        //Constructeur
+        public GrandMère()
+        {
+            Console.WriteLine("Je suis une grand mère");
+        }
+        public int NombreEnfants { get; set; }
+
+    }
+
+    public class Mère :GrandMère
+    {
+        //Constructeur
+        public Mère()
+        {
+            Console.WriteLine("Je suis une mère");
+        }
+        public Mère(int nombreEnfants):this()
+        {
+            NombreEnfants = nombreEnfants;
+            Console.WriteLine($"J'ai {NombreEnfants} enfants");
+        }
+    }
+
+    public class Fille : Mère
+    {
+        //Constructeur
+        public Fille():base(2)
+        {
+            Console.WriteLine("Je suis une fille");
+        }
+    }
+
+
+}
+
+

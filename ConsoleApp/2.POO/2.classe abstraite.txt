@@ -1,0 +1,59 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    class program
+    {
+        static void Main(string[] args)
+        {
+            //GrandMère grandMère = new GrandMère(); Une classe abstraite ne peut pas être instanciée directement
+            
+            Mère mère = new Mère();
+            mère.Nom = "Brigite";
+            mère.NombreEnfants = 2;
+            mère.AfficherInfo();
+            Console.ReadLine();
+ 
+        }  
+    }
+
+    abstract public class GrandMère //Classe abstraite
+    {
+        public string Nom { get; set; }
+        public int NombreEnfants { get; set; }
+
+        /*Le clé virtual donne feu vert à une redéfinition de la méthode dans 
+         les classes descendantes */
+        public virtual void AfficherInfo()
+        {
+            Console.WriteLine($"Je suis marriée" +
+                    $" Nom: {Nom} j'ai pas encore d'enfant");
+        }
+
+        abstract public void AfficherInfo(int nombre);
+    }
+
+    public class Mère : GrandMère
+    {
+        public override void AfficherInfo()
+        {
+            
+        }
+
+        public override  void AfficherInfo(int nombreEnfant)
+        {
+                Console.WriteLine($"Je suis une mère" +
+                    $" Nom: {Nom} et nombre d'enfants {NombreEnfants}");
+        }
+    }
+
+    public class Fille : Mère
+    {
+       
+    }
+
+
+}
+
+

@@ -1,0 +1,64 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    /*
+     champs
+     propriétés
+     méthodes
+     evenements
+     
+     constructeurs
+     destructeurs
+     */
+    
+    class program
+    {
+        static void Main(string[] args)
+        {
+            Personne moi = new Personne("C:\\temp\\PersonneInfo.txt");
+            moi.Affiche();
+        }  
+    }
+
+
+    public class Personne
+    {
+        string [] _infos;
+
+        //Un constructeur
+        public Personne(string fichier)
+        {
+            string contenu = File.ReadAllText(fichier);
+            _infos = contenu.Split(':');
+            Id = int.Parse(_infos[0]);
+            Nom = _infos[1];
+            Age = int.Parse(_infos[2]);
+        }
+
+        //Destructeur
+        ~Personne()
+        {
+            //Liberer les ressources
+        }
+
+        public void Affiche()
+        {
+            Console.WriteLine($"Id: {Id} Nom: {Nom} Age: {Age}");
+        }
+
+        public bool Marié()
+        {
+            return true;
+        }
+
+        public int Id { get; set; }
+        public string Nom { get; set; }
+        public int Age { get; set; }
+    }
+  
+
+}
+
+

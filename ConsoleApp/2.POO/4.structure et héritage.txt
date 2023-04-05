@@ -1,0 +1,41 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    class Principal
+    {
+        static void Main(string[] args)
+        {
+            Point3D point = new Point3D();
+            
+
+            Console.ReadLine();
+        }  
+    }
+
+
+    public struct Point // Il n'est pas possible d'hériter à partir d'une structure
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public struct Point3D : Point //Erreur de compilation car Point est une structure
+    {
+        public int Z { get; set; }
+    }
+
+    public class Point1 
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public struct Point13D : Point1 //Une structure ne peut pas hériter d'une classe
+    {
+        public int Z { get; set; }
+    }
+}
+
+

@@ -1,0 +1,86 @@
+﻿using System;
+using System.Data;
+using System.IO;
+using ClassLib;
+
+namespace ConsoleApp
+{
+    class Principal 
+    {
+        static void Main(string[] args)
+        {
+            //Polymorphisme de classe
+            Forme triangle = new Triangle { Base = 10, Hauteur = 25 };
+            double surface = triangle.CalculSurface();
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.CalculPerimetre()
+        }  
+    }
+
+    public class Forme
+    {
+       public virtual double CalculSurface()
+       {
+            return 0;
+       }
+    }
+
+    public class Triangle : Forme
+    {
+        public int Base { get; set; }
+        public int Hauteur { get; set; }
+
+        public override double CalculSurface()
+        {
+            return Base * Hauteur / 2;
+        }
+
+        ////On tape new pour être d'accord du faite d'appeler la méthode de base et non pas cette méthode
+        //new public  double CalculSurface()
+        //{
+        //    return Base * Hauteur / 2;
+        //}
+    }
+
+    public class Rectangle : Forme
+    {
+
+        
+        public Rectangle()
+        {
+            
+        }
+        //Surcharge du constructeur on obtient deux versions du même constructeur
+        public Rectangle(double longeur,double largeur)
+        {
+            Largeur = largeur;
+            Longeur = longeur;
+        }
+
+        public double Longeur { get; set; }
+        public double Largeur { get; set; }
+
+        //On obtient deux versions de calcul périmètre
+        public double CalculPerimetre(double x,int y)
+        {
+            return (Longeur + Largeur) * 2;
+        }
+
+        public double CalculPerimetre(int a ,double b)
+        {
+            return (Longeur + Largeur) * 2;
+        }
+
+    }
+
+    public class Cercle : Forme
+    {
+        
+    }
+
+
+
+}
+
+

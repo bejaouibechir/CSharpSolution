@@ -1,0 +1,73 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    /*
+     champs
+     propriétés
+     méthodes
+     evenements
+     
+     constructeurs
+     destructeurs
+     */
+    
+    class program
+    {
+        static void Main(string[] args)
+        {
+            Personne moi = new Personne("C:\\temp\\PersonneInfo.txt");
+            int identifiant1 = moi.Id; // Id est un membre d'instance
+            Personne moi2 = new Personne("C:\\temp\\PersonneInfo2.txt");
+            int identifiant2 = moi2.Id; // Id est un membre d'instance une deuxième photocopie
+            //Membre statique ou membre de classe
+            Personne.AfficherValeurCompteur();
+
+        }  
+    }
+
+
+    public class Personne
+    {
+        string [] _infos;
+
+        static public int Compteur; //Membre statique
+
+        static Personne() //Constucteur statique
+        {
+
+        }
+
+        //Un constructeur instance
+        public Personne(string fichier)
+        {
+            string contenu = File.ReadAllText(fichier);
+            _infos = contenu.Split(':');
+            Id = int.Parse(_infos[0]);
+            Nom = _infos[1];
+            Age = int.Parse(_infos[2]);
+            Compteur++; // <= Compteur = Compteur + 1 
+        }
+  
+        
+        public void Affiche()
+        {
+           
+            Console.WriteLine($"Id: {Id} Nom: {Nom} Age: {Age}");
+        }
+
+        static public void AfficherValeurCompteur() //Membre statique
+        {
+            Console.WriteLine($"Le nombre de personnes déjà crées est {Compteur}");
+        }
+
+        public int Id { get; set; }
+        public string Nom { get; set; }
+        public int Age { get; set; }
+    }
+  
+
+}
+
+

@@ -1,0 +1,56 @@
+﻿using System;
+using System.IO;
+using ClassLib;
+
+namespace ConsoleApp
+{
+    class Principal 
+    {
+        static void Main(string[] args)
+        {
+            Cercle c1 = new Cercle();
+            Cercle c2 = new Cercle();
+            Triangle t1 = new Triangle();
+            Rectangle r1 = new Rectangle();
+
+            //Polymorphisme de classes 
+            Forme[] formes = {c1,c2,t1,r1 };
+
+            foreach (var forme in formes)
+            {
+                Console.WriteLine(forme.Perimètre);
+            }
+     
+            Console.ReadLine();
+        }  
+    }
+
+    abstract public class Forme
+    {
+        abstract public double Perimètre { get; set; }
+        abstract public double Surface { get; set; }
+    }
+
+    public class Triangle : Forme
+    {
+        public override double Perimètre { get; set; } = 12;
+        public override double Surface { get; set; } = 120;
+    }
+
+    public class Rectangle : Forme
+    {
+        public override double Perimètre { get; set; } = 15;
+        public override double Surface { get; set; } = 150;
+    }
+
+    public class Cercle : Forme
+    {
+        public override double Perimètre { get; set; } = 14;
+        public override double Surface { get; set; } = 140;
+    }
+
+
+
+}
+
+

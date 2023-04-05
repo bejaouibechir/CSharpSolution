@@ -1,0 +1,28 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    class Principal
+    {
+        static void Main(string[] args)
+        {
+             Point? point = null;
+            //Point? point = new Point { X = 2, Y = 3 };
+            Point point1 = point ?? new Point { X = 1, Y = 1 };
+            
+            Console.ReadLine();
+        }  
+    }
+
+
+    public struct Point //Une structure est un type valeur n'accepte jamais la valeur nulle
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+   
+}
+
+

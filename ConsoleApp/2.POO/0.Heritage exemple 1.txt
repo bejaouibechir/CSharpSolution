@@ -1,0 +1,73 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+  
+    class program
+    {
+        static void Main(string[] args)
+        {
+            Employee employee = new Employee();
+            employee.Id = 1;
+            employee.Nom = "Bechir";
+            employee.Age = 44;
+            employee.Salaire = 5500;
+            employee.Affiche();
+        }  
+    }
+
+
+    public class Personne
+    {
+        string [] _infos;
+
+        static public int Compteur;
+
+        static Personne()
+        {
+
+        }
+
+        public Personne()
+        {
+
+        }
+
+        //Un constructeur instance
+        public Personne(string fichier)
+        {
+            string contenu = File.ReadAllText(fichier);
+            _infos = contenu.Split(':');
+            Id = int.Parse(_infos[0]);
+            Nom = _infos[1];
+            Age = int.Parse(_infos[2]);
+            Compteur++; // <= Compteur = Compteur + 1 
+        }
+  
+        
+        public void Affiche()
+        {
+           
+            Console.WriteLine($"Id: {Id} Nom: {Nom} Age: {Age}");
+        }
+
+        static public void AfficherValeurCompteur()
+        {
+            Console.WriteLine($"Le nombre de personnes déjà crées est {Compteur}");
+        }
+
+        public int Id { get; set; }
+        public string Nom { get; set; }
+        public int Age { get; set; }
+    }
+  
+
+    public class Employee : Personne //Employee hérite de personne
+    {
+        public decimal Salaire { get; set; }
+    }
+
+}
+
+

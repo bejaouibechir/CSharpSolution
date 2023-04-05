@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -45,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="2.POO\10.interfaces exemple 1" />
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +76,26 @@
     <Content Include="1.Classes\0.Membres de classes\3.sans indexeur.txt" />
     <Content Include="1.Classes\0.Membres de classes\5. evenements.txt" />
     <Content Include="1.Classes\0.Membres de classes\4.avec indexeur.txt" />
+    <Content Include="1.Classes\0.Membres de classes\6.constructeurdestructeurs.txt" />
+    <Content Include="1.Classes\0.Membres de classes\7.Statiquevsinstance.txt" />
+    <Content Include="2.POO\0.Heritage exemple 1.txt" />
+    <Content Include="2.POO\1.heritage et constructeurs.txt" />
+    <Content Include="2.POO\2.classe abstraite.txt" />
+    <Content Include="2.POO\3. Le mot clé sealed.txt" />
+    <Content Include="2.POO\4.structure et héritage.txt" />
+    <Content Include="2.POO\6.Caracterestiques de structures.txt" />
+    <Content Include="2.POO\5.structure et nulité.txt" />
+    <Content Include="2.POO\7.Classe statique.txt" />
+    <Content Include="2.POO\8.polymorphisme classes.txt" />
+    <Content Include="2.POO\9.polymorphisme methodes.txt" />
+    <Content Include="3.Interfaces\0.Cas de IEnumerable.txt" />
+    <Content Include="3.Interfaces\1.Cas IDisposable.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLib\ClassLib.csproj">
+      <Project>{9326f8f4-0e33-4aeb-865b-4e2762dc9d14}</Project>
+      <Name>ClassLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

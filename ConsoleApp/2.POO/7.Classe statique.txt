@@ -1,0 +1,52 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    class Principal
+    {
+        static void Main(string[] args)
+        {
+            Personne moi = new Personne { Id = 1, Nom = "Bechir" }; // etat 1
+            Personne natan = new Personne { Id = 2, Nom = "Natan" }; // etat 2
+            Personne anouar = new Personne { Id = 3, Nom = "Anouar" };//etat 3
+
+            //Arithmetique ar1 = new Arithmetique(); Une classe statique on peut pas l'instancier
+            Arithmetique.PI = 3.14;
+            Arithmetique.somme(11, 44);
+
+            // La classe Math est un exemple concret d'une classe statique
+            
+            Console.ReadLine();
+        }  
+    }
+
+    public class Personne //Statefull class car elle permet de definir plusieurs différentes copies
+    {
+         public int Id { get; set; }
+         public string Nom { get; set; }
+    }
+
+    static public class Arithmetique //Stateless 
+    {
+        static public double PI;
+        static public double somme(double a,double b)
+        {
+            return a + b;
+        }
+        static public double soustraction(double a, double b)
+        {
+            return a - b;
+        }
+    }
+
+    public class Operations : Arithmetique //La derivation est impossible à partir d'une classe statique
+    {
+
+    }
+   
+
+
+}
+
+

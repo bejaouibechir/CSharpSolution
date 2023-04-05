@@ -1,0 +1,41 @@
+﻿using System;
+using System.IO;
+
+namespace ConsoleApp
+{
+    class program
+    {
+        static void Main(string[] args)
+        {
+            //GrandMère grandMère = new GrandMère(); Une classe abstraite ne peut pas être instanciée directement
+            
+            Mère mère = new Mère();
+            mère.Nom = "Brigite";
+            mère.NombreEnfants = 2;
+            mère.AfficherInfo();
+            Console.ReadLine();
+ 
+        }  
+    }
+
+     public class GrandMère 
+    {
+        public string Nom { get; set; }
+        public int NombreEnfants { get; set; }
+    }
+
+    //Pour interrompre la chaine d'héritage marquer la classe avec le mot clé sealed
+    sealed public class Mère : GrandMère
+    {
+       
+    }
+
+    public class Fille : Mère // Erreur de compilation
+    {
+       
+    }
+
+
+}
+
+

@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Diagnostics;
+using System.Net.Http.Headers;
+
+namespace ConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            OpenFile();   
+        }
+
+        static public void OpenFile()
+        {
+            FileHandler fileHandler = new FileHandler();
+            fileHandler.Openfile(@"C:\temp\PersonneInfo.txt");
+        }
+
+    }
+    
+    public class FileHandler :IDisposable 
+    {
+        public void Dispose()
+        {
+            foreach (var process in Process.GetProcessesByName("notepad.exe"))
+            {
+                process.Kill();
+           
+            }
+        }
+
+        ~ FileHandler() {
+            foreach (var process in Process.GetProcessesByName("notepad.exe"))
+            {
+                process.Kill();
+
+            }
+        }
+
+
+        public void Openfile(string path)
+        {
+            Process.Start("notepad.exe", path);
+        }
+
+
+       
+    }
+
+
+}
+
+
+
+
