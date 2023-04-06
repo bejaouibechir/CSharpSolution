@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using DataAdoProject.CRUD;
 
 namespace DataAdoProject
@@ -13,12 +15,49 @@ namespace DataAdoProject
         static void Main(string[] args)
         {
             _context = new DataContext();
-           List<Client> clients = _context.GetClientList();
 
-           
+            Categorie categorie = new Categorie { Id = 3, Label = "Camions" };
+            _context.AddCategorie(categorie);
             Console.Read();
         }
+
+        /*
+         //Test du mode déconnecté
+            _context = new DataContext();
+            DataSet dataSet = _context.GetEmployeeList_DisconnetedMode();
+            DataTable employees = dataSet.Tables[0];
+            List<Employee> employeeList = DataTableToList<Employee>(employees);
+         
+         */
+
+        //Cette methode convertie une datatable en une liste générique 
+        public static List<T> DataTableToList<T>(DataTable table) where T : new()
+        {
+            List<T> list = new List<T>();
+            var typeProperties = typeof(T).GetProperties().Select(propertyInfo => new
+            {
+                PropertyInfo = propertyInfo,
+                Type = Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType
+            }).ToList();
+
+            foreach (var row in table.Rows.Cast<DataRow>())
+            {
+                T obj = new T();
+                foreach (var typeProperty in typeProperties)
+                {
+                    object value = row[typeProperty.PropertyInfo.Name];
+                    object safeValue = value == null || DBNull.Value.Equals(value)
+                        ? null
+                        : Convert.ChangeType(value, typeProperty.Type);
+
+                    typeProperty.PropertyInfo.SetValue(obj, safeValue, null);
+                }
+                list.Add(obj);
+            }
+            return list;
+        }
     }
+
 }
 
 

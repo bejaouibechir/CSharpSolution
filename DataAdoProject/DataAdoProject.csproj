@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,8 @@
     <Compile Include="CRUD\DataContext.cs" />
     <Compile Include="CRUD\Employee.cs" />
     <Compile Include="CRUD\EmployeeCRUD.cs" />
+    <Compile Include="CRUD\Produit.cs" />
+    <Compile Include="CRUD\ProduitCRUD.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

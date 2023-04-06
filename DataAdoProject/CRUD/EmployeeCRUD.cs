@@ -1,12 +1,10 @@
-﻿using DataAdoProject.CRUD;
+﻿
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataAdoProject.CRUD
 {
@@ -145,6 +143,29 @@ namespace DataAdoProject.CRUD
 
         }
 
+        public DataSet GetEmployeeList_DisconnetedMode()
+        { 
+            try
+            {
+                _sql = $"SELECT [Id],[Nom],[Salaire],[Recrutement] FROM [dbo].[Employees]";
+                _command = new SqlCommand(_sql, _connection);
+                _connection.Open();
+                _adapter = new SqlDataAdapter(_command);
+                _dataset = new DataSet();
+                _adapter.Fill(_dataset);
+                return _dataset;
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+        }
 
     }
 }

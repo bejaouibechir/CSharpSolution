@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -12,6 +14,8 @@ namespace DataAdoProject.CRUD
         SqlConnection _connection;
         SqlCommand _command;
         SqlDataReader _reader;
+        SqlDataAdapter _adapter;
+        DataSet _dataset;
         string _sql;
 
         //Une chaine de connection
@@ -19,8 +23,7 @@ namespace DataAdoProject.CRUD
 
         public DataContext()
         {
-            _connectionstring = "Data Source=PC2023\\PC2023;" +
-                 "Initial Catalog=BusinessDB;Integrated Security=True";
+            _connectionstring = ConfigurationManager.ConnectionStrings["businessdb"].ConnectionString;
             _connection = new SqlConnection(_connectionstring);
         }
 
@@ -28,8 +31,23 @@ namespace DataAdoProject.CRUD
         {
             try
             {
-                _sql = $"INSERT INTO [dbo].[Categories]([Id],[Label]) VALUES({categorie.Id},'{categorie.Label}')";
+                //Injection sql
+                //_sql = $"INSERT INTO [dbo].[Categories]([Id],[Label]) VALUES({categorie.Id},'{categorie.Label}')";
+
+                _sql = $"INSERT INTO [dbo].[Categories]([Id],[Label]) VALUES(@id,@label)";//Requête paramétrée
+
+                SqlParameter idparam = new SqlParameter("@id", SqlDbType.Int);
+                idparam.Direction = ParameterDirection.Input;
+                idparam.Value = categorie.Id;
+
+                SqlParameter labelparam = new SqlParameter("@label", SqlDbType.NVarChar,50);
+                labelparam.Direction = ParameterDirection.Input;
+                labelparam.Value = categorie.Label;
+
                 _command = new SqlCommand(_sql, _connection);
+                _command.Parameters.Add(idparam);
+                _command.Parameters.Add(labelparam);
+
                 _connection.Open();
                 _command.ExecuteNonQuery();
             }
