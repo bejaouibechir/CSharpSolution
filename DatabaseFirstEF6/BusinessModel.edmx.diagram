@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a49202bd1044ac9a73ff2c5e265b324" Name="Diagram1" ZoomLevel="151">
+        <EntityTypeShape EntityType="BusinessDBModel.Category" Width="1.5" PointX="11.125" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusinessDBModel.Client" Width="1.5" PointX="7.125" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusinessDBModel.Employee" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusinessDBModel.Produit" Width="1.5" PointX="7" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="BusinessDBModel.FK_Produits_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="BusinessDBModel.FK_Produits_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="BusinessDBModel.FK_Produits_Employees" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
