@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Data;
+using System.Data.OleDb;
 
 namespace ConsoleApp
 {
@@ -10,64 +8,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Produit voiture = new Produit { Id = 1, Label = "Mercedes", Prix = 55000 };
-            Produit.Serialize(@"C:\temp\voiture.dat",voiture);
-
-            Produit produit = Produit.Deserialize(@"C:\temp\voiture.dat");
-
-
-        }
-    }
-
-    [Serializable]
-    public class Produit :ISerializable
-    {
-        static BinaryFormatter _serializer;
-
-        public Produit()
-        {
             
         }
-
-
-        public Produit(SerializationInfo info, StreamingContext context)
-        {
-            ;
-        }
-
-        public int Id { get; set; }
-        public string Label { get; set; }
-        public decimal Prix { get; set; }
-
-        static public void Serialize(string path,Produit p)
-        {
-          _serializer = new BinaryFormatter();
-            using (FileStream file = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write))
-            {
-                _serializer.Serialize(file, p);
-            }
-        }
-
-        static public Produit Deserialize(string path)
-        {
-            Produit result;
-            _serializer = new BinaryFormatter();
-            using (FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                result  = (Produit)_serializer.Deserialize(file);
-            }
-            return result;
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            Debug.WriteLine($"La serialisation est faite en {DateTime.Now.Hour}:{DateTime.Now.Minute}");
-        }
     }
-
-
 }
-
-
-
-
