@@ -1,53 +1,36 @@
-﻿using System;
+﻿
+
 using System.Collections.Generic;
-using System.Data.OleDb;
+using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
-//Data Source=PC2023\PC2023;Initial Catalog=BusinessDB;Integrated Security=True
+
 namespace DataAdoProject.CRUD
 {
     public partial class DataContext
     {
-        //Sql server
-        SqlConnection _connection;
-        SqlCommand _command;
-        SqlDataReader _reader;
-        string _sql;
-
-        //Une chaine de connection
-        string _connectionstring;
-
-        public DataContext()
-        {
-            _connectionstring = "Data Source=PC2023\\PC2023;" +
-                 "Initial Catalog=BusinessDB;Integrated Security=True";
-            _connection = new SqlConnection(_connectionstring);
-        }
-
-        public void AddCategorie(Categorie categorie)
+        public void AddClient(Client client) 
         {
             try
             {
-                _sql = $"INSERT INTO [dbo].[Categories]([Id],[Label]) VALUES({categorie.Id},'{categorie.Label}')";
-                _command = new SqlCommand(_sql, _connection);
-                _connection.Open();
-                _command.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-            finally 
-            { 
-                _connection.Close(); 
-            }
+                
+                //int status;
 
-        }
-        public void UpdateCategorie(int id, string label)
-        {
-            try
-            {
-                _sql = $"UPDATE [dbo].[Categories] SET [Label] ='{label}'  WHERE Id ={id}";
+                //if(client.Status==false)
+                //{
+                //    status = 0;
+                //}
+                //else
+                //{
+                //    status = 1;
+                //}
+                //      A
+                //      |
+                //  Equivalent
+                int status = (client.Status == false) ? 0 : 1; //Operateur ternaire
+
+                _sql = $"INSERT INTO [dbo].[Clients]([Id],[Nom],[Status],[Adresse],[Contact])" +
+                    $" VALUES({client.Id},'{client.Nom}',{status},'{client.Adresse}','{client.Contact}')";
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _command.ExecuteNonQuery();
@@ -60,13 +43,15 @@ namespace DataAdoProject.CRUD
             {
                 _connection.Close();
             }
-
         }
-        public void DeleteCategorie(int id)
+        public void UpdateClient(int id,Client client) 
         {
             try
             {
-                _sql = $"DELETE FROM [dbo].[Categories] WHERE Id={id}";
+                int status = (client.Status == false) ? 0 : 1; //Operateur ternaire
+                _sql = $"UPDATE [dbo].[Clients] SET [Nom] ='{client.Nom}'" +
+                    $" ,[Status] ={status} ,[Adresse] ='{client.Adresse}' ,[Contact] ='{client.Contact}'" +
+                    $" WHERE Id= {id} ";
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _command.ExecuteNonQuery();
@@ -79,28 +64,49 @@ namespace DataAdoProject.CRUD
             {
                 _connection.Close();
             }
-
         }
 
-        public Categorie GetCategorie(int id)
+        public void DeleteClient(int id)
         {
-            Categorie categorie;
             try
             {
-                _sql = $"SELECT [Id],[Label] FROM [dbo].[Categories] WHERE Id = {id}";
+                _sql = $"DELETE FROM [dbo].[Clients]WHERE Id ={id}";
+                _command = new SqlCommand(_sql, _connection);
+                _connection.Open();
+                _command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
+        public Client GetClient(int id)
+        {
+            Client Client;
+            try
+            {
+                _sql = $"SELECT [Id],[Nom],[Status],[Adresse],[Contact] FROM [dbo].[Clients] Where Id={id}";
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _reader = _command.ExecuteReader(System.Data.CommandBehavior.SingleRow);
                 _reader.Read();
-                
-                categorie = new Categorie
+
+                Client = new Client
                 {
                     Id = int.Parse(_reader[0].ToString()),
-                    Label = _reader[1].ToString(),
+                    Nom = _reader[1].ToString(),
+                    Status = (_reader[2].ToString()=="0")?false:true ,
+                    Adresse = _reader[3].ToString(),
+                    Contact = _reader[4].ToString()
                 };
 
-                return categorie;
-                
+                return Client;
+
             }
             catch (SqlException ex)
             {
@@ -114,27 +120,30 @@ namespace DataAdoProject.CRUD
 
 
         }
-        public List<Categorie> GetCategorieList()
+        public List<Client> GetClientList()
         {
-            List<Categorie> categorieList;
-            Categorie categorie;
+            List<Client> ClientList;
+            Client Client;
             try
             {
-                _sql = $"SELECT [Id],[Label] FROM [dbo].[Categories]";
+                _sql = $"SELECT [Id],[Nom],[Status],[Adresse],[Contact] FROM [dbo].[Clients]";
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _reader = _command.ExecuteReader();
-                categorieList = new List<Categorie>();
+                ClientList = new List<Client>();
                 while (_reader.Read())
                 {
-                    categorie = new Categorie
+                    Client = new Client
                     {
                         Id = int.Parse(_reader[0].ToString()),
-                        Label = _reader[1].ToString()
+                        Nom = _reader[1].ToString(),
+                        Status = (_reader[2].ToString() == "False") ? false : true,
+                        Adresse = _reader[3].ToString(),
+                        Contact = _reader[4].ToString()
                     };
-                    categorieList.Add(categorie);
+                    ClientList.Add(Client);
                 }
-                return categorieList;
+                return ClientList;
 
             }
             catch (SqlException ex)

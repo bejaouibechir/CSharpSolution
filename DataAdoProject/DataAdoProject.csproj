@@ -44,7 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRUD\Categorie.cs" />
+    <Compile Include="CRUD\Client.cs" />
+    <Compile Include="CRUD\ClientCRUD.cs" />
     <Compile Include="CRUD\DataContext.cs" />
+    <Compile Include="CRUD\Employee.cs" />
+    <Compile Include="CRUD\EmployeeCRUD.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

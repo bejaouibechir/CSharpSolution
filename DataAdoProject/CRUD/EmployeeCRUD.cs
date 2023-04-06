@@ -1,53 +1,23 @@
-﻿using System;
+﻿using DataAdoProject.CRUD;
+using System;
 using System.Collections.Generic;
-using System.Data.OleDb;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
-//Data Source=PC2023\PC2023;Initial Catalog=BusinessDB;Integrated Security=True
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace DataAdoProject.CRUD
 {
     public partial class DataContext
     {
-        //Sql server
-        SqlConnection _connection;
-        SqlCommand _command;
-        SqlDataReader _reader;
-        string _sql;
-
-        //Une chaine de connection
-        string _connectionstring;
-
-        public DataContext()
-        {
-            _connectionstring = "Data Source=PC2023\\PC2023;" +
-                 "Initial Catalog=BusinessDB;Integrated Security=True";
-            _connection = new SqlConnection(_connectionstring);
-        }
-
-        public void AddCategorie(Categorie categorie)
+        public void AddEmployee(Employee employee)
         {
             try
             {
-                _sql = $"INSERT INTO [dbo].[Categories]([Id],[Label]) VALUES({categorie.Id},'{categorie.Label}')";
-                _command = new SqlCommand(_sql, _connection);
-                _connection.Open();
-                _command.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-            finally 
-            { 
-                _connection.Close(); 
-            }
-
-        }
-        public void UpdateCategorie(int id, string label)
-        {
-            try
-            {
-                _sql = $"UPDATE [dbo].[Categories] SET [Label] ='{label}'  WHERE Id ={id}";
+                _sql = $"INSERT INTO [dbo].[Employees]([Id],[Nom],[Salaire],[Recrutement])" +
+                    $" VALUES ({employee.Id},'{employee.Nom}',{employee.Salaire},'{employee.Recrutement}')";
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _command.ExecuteNonQuery();
@@ -60,13 +30,16 @@ namespace DataAdoProject.CRUD
             {
                 _connection.Close();
             }
-
         }
-        public void DeleteCategorie(int id)
+
+        public void UpdateEmployee(int id,Employee employee)
         {
             try
             {
-                _sql = $"DELETE FROM [dbo].[Categories] WHERE Id={id}";
+                _sql = $"UPDATE [dbo].[Employees] SET " +
+                    $"[Nom] = '{employee.Nom}' ,[Salaire] ={employee.Salaire} " +
+                    $",[Recrutement] = '{employee.Recrutement}' WHERE Id={id}";
+
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _command.ExecuteNonQuery();
@@ -79,28 +52,49 @@ namespace DataAdoProject.CRUD
             {
                 _connection.Close();
             }
-
         }
 
-        public Categorie GetCategorie(int id)
+        public void DeleteEmployee(int id)
         {
-            Categorie categorie;
             try
             {
-                _sql = $"SELECT [Id],[Label] FROM [dbo].[Categories] WHERE Id = {id}";
+                _sql = $"DELETE FROM [dbo].[Employees] WHERE Id ={id}";
+
+                _command = new SqlCommand(_sql, _connection);
+                _connection.Open();
+                _command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
+        public Employee GetEmployee(int id)
+        {
+            Employee Employee;
+            try
+            {
+                _sql = $"SELECT [Id],[Nom],[Salaire],[Recrutement] FROM [dbo].[Employees] WHERE Id = {id}";
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _reader = _command.ExecuteReader(System.Data.CommandBehavior.SingleRow);
                 _reader.Read();
-                
-                categorie = new Categorie
+
+                Employee = new Employee
                 {
                     Id = int.Parse(_reader[0].ToString()),
-                    Label = _reader[1].ToString(),
+                    Nom = _reader[1].ToString(),
+                    Salaire = decimal.Parse(_reader[2].ToString()),
+                    Recrutement = DateTime.Parse(_reader[3].ToString()) 
                 };
 
-                return categorie;
-                
+                return Employee;
+
             }
             catch (SqlException ex)
             {
@@ -114,27 +108,29 @@ namespace DataAdoProject.CRUD
 
 
         }
-        public List<Categorie> GetCategorieList()
+        public List<Employee> GetEmployeeList()
         {
-            List<Categorie> categorieList;
-            Categorie categorie;
+            List<Employee> EmployeeList;
+            Employee Employee;
             try
             {
-                _sql = $"SELECT [Id],[Label] FROM [dbo].[Categories]";
+                _sql = $"SELECT [Id],[Nom],[Salaire],[Recrutement] FROM [dbo].[Employees]";
                 _command = new SqlCommand(_sql, _connection);
                 _connection.Open();
                 _reader = _command.ExecuteReader();
-                categorieList = new List<Categorie>();
+                EmployeeList = new List<Employee>();
                 while (_reader.Read())
                 {
-                    categorie = new Categorie
+                    Employee = new Employee
                     {
                         Id = int.Parse(_reader[0].ToString()),
-                        Label = _reader[1].ToString()
+                        Nom = _reader[1].ToString(),
+                        Salaire = decimal.Parse(_reader[2].ToString()),
+                        Recrutement = DateTime.Parse(_reader[3].ToString())
                     };
-                    categorieList.Add(categorie);
+                    EmployeeList.Add(Employee);
                 }
-                return categorieList;
+                return EmployeeList;
 
             }
             catch (SqlException ex)

@@ -9,11 +9,13 @@ namespace DataAdoProject
     internal class Program
     {
         static DataContext _context;
-      
+
         static void Main(string[] args)
         {
             _context = new DataContext();
-            List<Categorie> categorie = _context.GetCategorieList();
+           List<Client> clients = _context.GetClientList();
+
+           
             Console.Read();
         }
     }
@@ -66,5 +68,16 @@ _context = new DataContext();
             Categorie categorie = _context.GetCategorie(1);
             Console.Read();
  
+ 
+ */
+
+/*
+ //Test d'ajout d'employee
+
+ _context = new DataContext();
+            Employee employee = new Employee { Id = 1, Nom="Bechir", 
+                Recrutement=new DateTime(2015,2,8), Salaire=55000 };
+            _context.AddEmployee(employee);
+            Console.Read();
  
  */
