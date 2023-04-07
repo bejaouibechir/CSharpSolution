@@ -15,9 +15,8 @@ namespace DataAdoProject
         static void Main(string[] args)
         {
             _context = new DataContext();
+            DataSet employeeData = _context.GetEmployeeList_DisconnetedMode();
 
-            Categorie categorie = new Categorie { Id = 3, Label = "Camions" };
-            _context.AddCategorie(categorie);
             Console.Read();
         }
 

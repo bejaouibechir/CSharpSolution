@@ -106,6 +106,8 @@ namespace DataAdoProject.CRUD
 
 
         }
+        
+        //Mode ADO.NET Connecté
         public List<Employee> GetEmployeeList()
         {
             List<Employee> EmployeeList;

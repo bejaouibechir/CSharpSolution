@@ -15,7 +15,24 @@ namespace DatabaseFirstEF6
         static void Main(string[] args)
         {
             _context = new BusinessDBEntities();
-            List<Produit> produitlist = _context.Produits.ToList();
+
+            try
+            {
+                Client client = new Client
+                {
+                    Id = 3,
+                    Nom = "Bechir",
+                    Adresse = "12 Rue des Fleurs",
+                    Status = false,
+                    Contact = "bechir@xyz.com"
+                };
+                _context.Clients.Add(client);
+                _context.SaveChanges();
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }
@@ -75,4 +92,9 @@ namespace DatabaseFirstEF6
             //Ramène la première occurence qui corréspond au critère
             Client client2 = _context.Clients.FirstOrDefault(c => c.Id == 1);
  
+ */
+
+/*
+ _context = new BusinessDBEntities();
+            List<Produit> produitlist = _context.Produits.ToList();
  */

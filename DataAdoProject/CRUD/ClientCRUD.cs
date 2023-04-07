@@ -85,6 +85,7 @@ namespace DataAdoProject.CRUD
             }
         }
 
+
         public Client GetClient(int id)
         {
             Client Client;
